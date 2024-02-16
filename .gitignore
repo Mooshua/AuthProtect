@@ -1,0 +1,7 @@
+# Plugin things
+/src/plugins/*.smx
+/src/scripting/private/
+
+# Package things
+package/
+authprotect.zip

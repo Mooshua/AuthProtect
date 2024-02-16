@@ -1,0 +1,24 @@
+name: Continuous Deployment
+on:
+  pull_request:
+  push:
+  repository_dispatch:
+
+jobs:
+  plugins:
+    runs-on: ubuntu-latest
+    name: Build Plugin
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Package
+        shell: pwsh
+        run: ./package.ps1
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with:
+          if-no-files-found: error
+          name: authprotect
+          path: package
